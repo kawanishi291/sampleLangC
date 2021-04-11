@@ -1,12 +1,26 @@
 #include <stdio.h>
 
 int main(void) {
-    printf("文字列を入力してEnterボタンを押してください\n");
- 
-    double d;
-    scanf("%lf", &d);
- 
-    printf("入力された数値+1は：%lf\n", d + 1);
- 
+    int array[10];
+    int num;
+
+    for (int i = 0; i < 10; i++){
+        printf("・%d回目数値入力\n", i+1);
+        scanf("%d", &num);
+        array[i] = num;
+    }
+
+    int max = 0;
+    int sum = 0;
+
+    for (int j = 0; j < 10; j++){
+        if (max < array[j]){
+            max = array[j];
+        }
+        sum = sum + array[j];
+    }
+    printf("最大値は%d\n", max);
+    printf("合計値は%d\n", sum);
+
     return 0;
 }
