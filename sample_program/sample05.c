@@ -9,8 +9,11 @@ int main(void) {
 	int day;
 	int age;
 	
+	printf("年\n");
 	year = setNum();
+	printf("月\n");
 	month = setNum();
+	printf("日\n");
 	day = setNum();
 	age = setAge(year, month, day);
 	
