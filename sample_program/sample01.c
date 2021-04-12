@@ -3,18 +3,19 @@
 int main(void) {
     int array[10];
     int num;
+	int i;
+	int max = 0;
+    int min = 100;
+    int sum = 0;
+	int j;
 
-    for (int i = 0; i < 10; i++){
+    for (i = 0; i < 10; i++){
         printf("・%d回目数値入力\n", i+1);
         scanf("%d", &num);
         array[i] = num;
     }
 
-    int max = 0;
-    int min = 0;
-    int sum = 0;
-
-    for (int j = 0; j < 10; j++){
+    for (j = 0; j < 10; j++){
         if (max < array[j]){
             max = array[j];
         }
