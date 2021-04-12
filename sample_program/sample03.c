@@ -9,14 +9,14 @@ int main(void) {
 	int sum = 0;
 	
 	for(;;){
-	    scanf("%d", &month);
 		printf("月\n");
+	    scanf("%d", &month);
 	    if (month == 0){
 	    	printf("終了");
 			break;
 	    }else{
-			scanf("%d", &day);
 			printf("日\n");
+			scanf("%d", &day);
 			month = month - 1;
 			sum = 0;
 			for (i = 0; i < month; i++){
