@@ -81,14 +81,14 @@ void printCards(int *p){
         win = resultsOfMatch(i, num, win, p);
         if(win >= 30)break;
     }
-    printf("/n");
+    printf("\n");
 }
 
 int resultsOfMatch(int i, int num, int win, int *p){
 
     if(i > 0){
         if(p[i] % 13 < 2 || p[i-1] % 13 < 2){
-            if(p[i-1] % 13 > 1){
+            if(p[i-1] % 13 > 1 && num == 0){
                 win += 1;
                 printf(" -> ★★YOU WIN!");
                 if(i > 1){
@@ -96,7 +96,18 @@ int resultsOfMatch(int i, int num, int win, int *p){
                 }else{
                     printf("\n");
                 }
-            }else if(p[i] % 13 > 1){
+            }else if(p[i-1] % 13 > 1 && num == 1){
+            	printf(" -> YOU LOSE...\n");
+                win = 100;
+            }else if(p[i] % 13 > 1 && num == 1){
+            	win += 1;
+                printf(" -> ★★YOU WIN!");
+                if(i > 1){
+                    printf("　（現在%d連勝中）\n", win);
+                }else{
+                    printf("\n");
+                }
+            }else if(p[i] % 13 > 1 && num == 0){
                 printf(" -> YOU LOSE...\n");
                 win = 100;
             }else{

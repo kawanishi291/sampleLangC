@@ -33,8 +33,8 @@ void printCalendar(int blank, int year, int month, int *p){
     int i;
     int end;
 
-    if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0 && month == 2){
-        end = 1;
+    if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+        if(month + 1 == 2)end = 1;
     }else{
         end = 0;
     }
