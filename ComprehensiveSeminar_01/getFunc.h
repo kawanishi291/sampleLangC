@@ -1,0 +1,1 @@
+int getString(char *prompt, char *buffer, int size);
