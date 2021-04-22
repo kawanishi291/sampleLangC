@@ -57,11 +57,13 @@ int getNumber(char *prompt, int minValue, int maxValue)
 	}
     /* エラー処理 */
 	if (minValue > result || result > maxValue) { // 0未満・10より大きい数値が入力された場合
-		result = -1;
+		result = 11;
         prompt = "<0～10の範囲で入力してください>\n";
         printf("%s", prompt);
+	} else if (buffer[0] == '\0'){
+		result = -1;
 	} else if (result == 0 && buffer[0] != '0'){ // 数値以外が入力された場合
-        result = -1;
+        result = 11;
         prompt = "<'0'～'9'以外の文字を入力しないでください>\n";
         printf("%s", prompt);
     }
