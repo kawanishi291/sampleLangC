@@ -15,6 +15,10 @@ int getOddMax(int *ary, int size)
 			}
 		}
 	}
+	// 値が 0 〜 10 でないなら、（異常系）-1を代入
+	if (result < 0 || 10 < result){
+		result = -1;
+	}
 	
     return result;
 }
@@ -42,8 +46,8 @@ int getSecondMin(int *ary, int size)
 			}
 		}
 	}
-	// resultが初期値のままなら、異常系）1を代入
-	if (result == 11){
+	// resultが初期値のままなら、（異常系）-1を代入
+	if (result < 0 || 10 < result){
 		result = -1;
 	}
 
