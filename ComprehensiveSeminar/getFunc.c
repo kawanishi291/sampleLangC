@@ -60,7 +60,7 @@ int getNumber(char *prompt, int minValue, int maxValue)
 		result = 11;
         prompt = "<0～10の範囲で入力してください>\n";
         printf("%s", prompt);
-	} else if (buffer[0] == '\0'){
+	} else if (buffer[0] == '\0'){ // 1つも入力されずにEnterkeyが押された場合
 		result = -1;
 	} else if (result == 0 && buffer[0] != '0'){ // 数値以外が入力された場合
         result = 11;
