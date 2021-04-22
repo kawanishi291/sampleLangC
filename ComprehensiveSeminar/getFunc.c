@@ -8,13 +8,13 @@ int getString(char *prompt, char *buffer, int size)
     int len;
     int flag = -1;
 	
-	if (size >= 2 && buffer != NULL){ 
+	if (size >= 2 && buffer != NULL) { 
 		if (prompt == NULL) {
 			printf("=> ");
 		} else {
 			printf("%s", prompt);
 		}
-	    while(flag == -1){
+	    while(flag == -1) {
 	        fgets(buffer, size, stdin);
 	        len = strlen(buffer);
 	        if (buffer[len - 1] == '\n') {
