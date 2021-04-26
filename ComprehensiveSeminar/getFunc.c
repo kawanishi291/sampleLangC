@@ -121,3 +121,41 @@ int getDayNumber(char *prompt, int minValue, int maxValue)
 
     return result;
 }
+
+
+int getPointNumber(char *prompt, int minValue, int maxValue)
+{
+	char buffer[5];
+    int result = -1;
+	int len;
+	
+ 
+	if (prompt == NULL) {
+		printf("=> ");
+	} else {
+		printf("%s", prompt);
+	}
+	fgets(buffer, 5, stdin);
+	len = strlen(buffer);
+	if (buffer[len - 1] == '\n') {
+		buffer[len - 1] = '\0';
+		result = atoi(buffer);
+	} else {
+		while (getchar () != '\n') {
+		}
+	}
+    /* エラー処理 */
+	if (minValue > result || result > maxValue) { // 0未満・100より大きい数値が入力された場合
+		result = -1;
+        prompt = "<0～100の範囲で入力してください>\n";
+        printf("%s", prompt);
+	} else if (buffer[0] == '\0') { // 1つも入力されずにEnterkeyが押された場合
+		result = 0;
+	} else if (result == 0 && buffer[0] != '0') { // 数値以外が入力された場合
+        result = -1;
+        prompt = "<'0'～'9'以外の文字を入力しないでください>\n";
+        printf("%s", prompt);
+    }
+
+    return result;
+}
