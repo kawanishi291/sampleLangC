@@ -17,7 +17,7 @@ struct ST_TEST {
 int inputNameData(ST_TEST *pTest);
 int inputPointData(ST_TEST *pTest);
 void printData(int data, ST_TEST* list);
-void DeleteData(int data, ST_TEST* list, char *buffer);
+int DeleteData(ST_TEST* list, char *buffer);
 ST_TEST* list_add(ST_TEST* list, char name[], int point);
 
 
@@ -56,7 +56,7 @@ int main(void){
 		} else {
 			strcpy(promptMessage, "名前 => \n");
 			result = getString(promptMessage, inputArray, 100);
-			DeleteData(data, list, inputArray);
+			data += DeleteData(list, inputArray);
 			printf("削除");
 			strcpy(promptMessage, "<<メニュー選択>>\n1:追加 2:削除 0:終了 => \n");
 		}
@@ -148,11 +148,12 @@ ST_TEST* list_add(ST_TEST* list, char name[], int point) {
 
 
 /* データ削除関数 */
-void DeleteData(int data, ST_TEST* list, char *buffer)
+int DeleteData(ST_TEST* list, char *buffer)
 {
 	int i;
 	int cnt = 0;
-	int num;
+	int num = -1;
+	int data;
 	ST_TEST* tmp[5];
 	
 	while (1)
@@ -170,9 +171,24 @@ void DeleteData(int data, ST_TEST* list, char *buffer)
             break;
         }
     }
-	*tmp[num-1]->pNEXT = *tmp[num+1];
-	free(tmp[num]);
+	switch (num) {
+		case -1:
+			data = 0;
+			break;
+		case 0:
+			*tmp[0] = *tmp[1];
+			//free(tmp[0]);
+			data = 1;
+			break;
+		default:
+			*tmp[num-1]->pNEXT = *tmp[num+1];
+			//free(tmp[num]);
+			data = 1;
+			break;
+	}
 	for (i = 0; i <= cnt; i++) {
 		printf("%d:%p->%s\n", i, tmp[i], tmp[i]->name);
 	}
+
+	return data;
 }
