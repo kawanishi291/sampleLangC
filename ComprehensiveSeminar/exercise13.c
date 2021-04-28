@@ -70,43 +70,6 @@ int main(void){
 }
 
 
-/* データ入力関数 */
-int inputNameData(ST_TEST *pTest){
-    char promptMessage[] = "名前 => ";
-    char inputArray[100];
-    int result = -1;
-
-    while (result < 0) {
-		result = getString(promptMessage, inputArray, 100);
-    	printf("%d", result);
-    	if (result >= 0) {
-    		strcpy(pTest->name, inputArray);
-    	}
-    }
-	
-    return 0;
-}
-
-
-/* データ入力関数 */
-int inputPointData(ST_TEST *pTest){
-    char promptMessage[] = "点数 => ";
-    char inputArray[100];
-    int point = -1;
-
-	while (point < 0) {
-    	point = getNumber(promptMessage, 0, 100);
-		printf("%d", point);
-		if (point >= 0) {
-			pTest->point = point;
-		}
-	}
-	printf("\n");
-
-    return 0;
-}
-
-
 /* データ出力関数 */
 void printData(int data, ST_TEST* list)
 {
@@ -212,4 +175,41 @@ int DeleteData(ST_TEST* list, char *buffer)
 	}
 
 	return data;
+}
+
+
+/* データ入力関数 */
+int inputNameData(ST_TEST *pTest){
+    char promptMessage[] = "名前 => ";
+    char inputArray[100];
+    int result = -1;
+
+    while (result < 0) {
+		result = getString(promptMessage, inputArray, 100);
+    	printf("%d", result);
+    	if (result >= 0) {
+    		strcpy(pTest->name, inputArray);
+    	}
+    }
+	
+    return 0;
+}
+
+
+/* データ入力関数 */
+int inputPointData(ST_TEST *pTest){
+    char promptMessage[] = "点数 => ";
+    char inputArray[100];
+    int point = -1;
+
+	while (point < 0) {
+    	point = getNumber(promptMessage, 0, 100);
+		printf("%d", point);
+		if (point >= 0) {
+			pTest->point = point;
+		}
+	}
+	printf("\n");
+
+    return 0;
 }
