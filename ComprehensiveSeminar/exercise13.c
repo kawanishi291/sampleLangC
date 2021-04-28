@@ -29,26 +29,27 @@ int main(void){
 	int point = -1;
     int i;
 	ST_TEST* list = NULL;
-	int type = 1;
+	int type = -1;
 	int data = 5;
 	
 	
 	
 	while(1){
-		//printf("<<メニュー選択>>\n1:追加 2:削除 0:終了 => ");
-		type = getNumber(promptMessage, 0, 2);
-		strcpy(promptMessage, "名前 => \n\n");
+		while (type < 0 || 2 < type) {
+			strcpy(promptMessage, "<<メニュー選択>>\n1:追加 2:削除 0:終了 => \n");
+			type = getNumber(promptMessage, 0, 2);
+		}
 		if (type == 0) {
 			break;
 		} else if (type == 1) {
-			//while (result < 0) {
-			result = getString(promptMessage, inputArray, 100);
-			strcpy(promptMessage, "点数 => \n");
-		    //}
-			//while (point < 0) {
-		    point = getNumber(promptMessage, 0, 100);
-			strcpy(promptMessage, "<<メニュー選択>>\n1:追加 2:削除 0:終了 => \n");
-			//}
+			while (result < 0) {
+				strcpy(promptMessage, "名前 => \n");
+				result = getString(promptMessage, inputArray, 100);
+		    }
+			while (point < 0 || 100 < point) {
+				strcpy(promptMessage, "点数 => \n");
+		    	point = getNumber(promptMessage, 0, 100);
+			}
 			if ((result >= 0) && (point >= 0)) {
 				list = list_add(list,  inputArray, point);
 				data -= 1;
@@ -61,6 +62,9 @@ int main(void){
 			strcpy(promptMessage, "<<メニュー選択>>\n1:追加 2:削除 0:終了 => \n");
 		}
 		printData(data, list);
+		result = -1;
+		point = -1;
+		type = -1;
 	}
     return 0;
 }
@@ -171,18 +175,35 @@ int DeleteData(ST_TEST* list, char *buffer)
             break;
         }
     }
+	if (num == cnt) {
+		if (num != 0) {
+			num = 6;
+		} else {
+			num = 7;
+		}
+	}
 	switch (num) {
 		case -1:
 			data = 0;
 			break;
 		case 0:
 			*tmp[0] = *tmp[1];
-			//free(tmp[0]);
+			free(&tmp[num]);
+			data = 1;
+			break;
+		case 7:
+			printf("%d¥n",cnt);
+			free(&tmp[cnt]);
+			data = 1;
+			break;
+		case 6:
+			tmp[cnt-1]->pNEXT = NULL;
+			free(&tmp[cnt]);
 			data = 1;
 			break;
 		default:
 			*tmp[num-1]->pNEXT = *tmp[num+1];
-			//free(tmp[num]);
+			free(&tmp[num]);
 			data = 1;
 			break;
 	}
