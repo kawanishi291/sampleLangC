@@ -5,6 +5,12 @@
 $ docker build -t alpine:exec-c .
 $ docker run -v "$PWD"/ComprehensiveSeminar:/home --rm -ti alpine:exec-c
 ```
+## 追加総合演習３
+```
+# cd /home
+# gcc exercise13.c getFunc.c
+# ./a.out
+```
 ## 総合演習4
 ```
 # cd /home
