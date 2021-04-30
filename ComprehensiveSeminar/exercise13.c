@@ -155,8 +155,10 @@ int DeleteData(ST_TEST* list, char *buffer)
 			data = 1;
 			break;
 		case 7:
-			printf("%d¥n",cnt);
-			free(&tmp[cnt]);
+			printf("%d\n",cnt);
+			list = NULL;
+			tmp[0] = NULL;
+			//free(&tmp[cnt]);
 			data = 1;
 			break;
 		case 6:
