@@ -1,5 +1,13 @@
 # sampleLangC
 
+## web課題
+```
+$ docker build -t alpine:exec-c .
+$ docker run -v "$PWD"/kadai:/home --rm -ti alpine:exec-c
+# cd /home
+# gcc kadai02_01.c -o kadai02_01.out
+# ./kadai02_01.out
+```
 
 ```
 $ docker build -t alpine:exec-c .
