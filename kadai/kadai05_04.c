@@ -5,7 +5,11 @@ int main(){
 
     printf("数値を入力してください => \n");
     scanf("%d", &num);
-    while(num > 0) {
+    while (num < 0) {
+        printf("正の数値を入力してください => \n");
+        scanf("%d", &num);
+    }
+    while (num > 0) {
         printf("%d, ", num);
         num --;
     }
