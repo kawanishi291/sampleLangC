@@ -3,8 +3,6 @@
 なお、2つの正の整数が互いに素とは、1以外に共通公約数を持たない関係のことである。
 */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 int PrimeNumber(int num);
 
