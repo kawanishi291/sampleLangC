@@ -1,5 +1,14 @@
 # sampleLangC
 
+## 100本ノック
+```
+$ docker build -t alpine:exec-c .
+$ docker run -v "$PWD"/knock_100:/home --rm -ti alpine:exec-c
+# cd /home
+# gcc knock_080.c -o knock080.out
+# ./knock080.out
+```
+
 ## web課題
 ```
 $ docker build -t alpine:exec-c .
