@@ -11,7 +11,7 @@ int main(){
     int Array[5];
     
     for (i = 0; i < 5; i++) {
-        printf("input input data[%d]:\n", i);
+        printf("input data[%d]:\n", i);
         scanf("%d", &Array[i]);
     }
     for (i = 0; i < 5; i++) {
