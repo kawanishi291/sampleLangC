@@ -11,6 +11,7 @@
 #include <unistd.h>
 
 #define TRUMPS 52
+#define FIRST_DRAW 2
 
 void FirstSetTrump(int *p);
 void ShuffleTrump(int *p);
@@ -24,14 +25,26 @@ int sum = 0;
 int main(){
     int trump[TRUMPS + 1];
     int i;
+    int cnt = FIRST_DRAW + 1;
 
     FirstSetTrump(trump);
     ShuffleTrump(trump);
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < FIRST_DRAW; i++) {
         PrintTrump(trump[i] % 13, trump[i] / 13);
         SumNumber(trump[i] % 13);
     }
     printf("合計%d\n", sum);
+    while (sum < 17) {
+        printf("もう一枚引きます\n");
+        sum = 0;
+        for (i = 0; i < cnt; i++) {
+            PrintTrump(trump[i] % 13, trump[i] / 13);
+            SumNumber(trump[i] % 13);
+        }
+        cnt ++;
+        printf("合計%d\n", sum);
+    }
+    printf("これでOKです\n");
 
     return 0;
 }
