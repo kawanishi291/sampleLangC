@@ -91,26 +91,9 @@ void ChoiceCards(int *p)
     }
 }
 
-
+/* トランプの数字表示関数 */
 void PrintTrump(int num, int mark)
 {
-    /*
-    switch (mark) {
-        case 0:
-            printf("ダイヤの");
-            break;
-        case 1:
-            printf("ハートの");
-            break;
-        case 2:
-            printf("クローバーの");
-            break;
-        case 3:
-        case 4:
-            printf("スペードの");
-            break;
-    }
-    */
     if (num == 1) {
         printf("A ");
     } else if (num == 11) {
@@ -122,9 +105,9 @@ void PrintTrump(int num, int mark)
     } else {
         printf("%d ", num);
     }
-    //printf("\n");
 }
 
+/* 合計値を計算する関数 */
 void SumNumber(int num)
 {
     if (num == 0 || num > 10) {
