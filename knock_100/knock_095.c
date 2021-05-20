@@ -1,0 +1,109 @@
+/*
+hit and blowという数当てゲームがある。出題者は0〜9999の範囲の数字を正解として選ぶ。次に、解答者は予想する数字を言う。
+出題者は同じ桁（位置）に同じ数字があればヒット、桁は違うが同じ数字があればブローとして数え、ヒットとブローの数を答える
+（3桁以下の数字は頭に0が付いているものとする）。
+例えば、次のようになる：
+    正解:1234 予想:1234 → 4ヒット（＝クリア）
+    正解:1234 予想:5678 → 0ヒット0ブロー
+    正解:1234 予想:1892 → 1ヒット1ブロー
+    正解:0034 予想:3400 → 0ヒット4ブロー
+    正解:1222 予想:1234 → 2ヒット0ブロー（ヒットはブローより優先して判定する）
+    正解:1112 予想:1221 → 1ヒット2ブロー
+このゲームを3回に分けて作ってみよう。まず、コンピュータは正解となる4つの数字をランダムに選ぶ
+（同じ数字を何回使ってもよいし、0で始まってもよい）。次に、プレイヤーに4桁の数字を入力させる。
+そして、ヒットの数を数え、表示するプログラムを作成せよ。
+*/
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+#define COUNT 4
+
+void SetNumber(int *p);
+void InputNumber(int *ip, int num);
+int CheckHit(int *p, int *cp, int *ip);
+int CheckBlow(int *p, int *cp, int *ip);
+
+int main(){
+    int NumberList[COUNT];
+    int CopyList[COUNT];
+    int InputList[COUNT];
+    int num;
+    int hit;
+    int blow;
+
+    printf("4桁の数字を入力:\n");
+    scanf("%d", &num);
+    SetNumber(NumberList);
+    InputNumber(InputList, num);
+    hit = CheckHit(NumberList, CopyList, InputList);
+    blow = CheckBlow(NumberList, CopyList, InputList);
+    printf("%d hit, %d blow\n", hit, blow);
+
+    return 0;
+}
+
+void SetNumber(int *p)
+{
+    int i;
+    time_t tm;
+    int num;
+
+    time(&tm);
+    srand((unsigned int)tm);
+    num = 0 + rand() % 9999;
+    printf("target = ");
+    for (i = 0; i < COUNT; i++){
+        p[i] = num % 10;
+        num /= 10;
+        printf("%d", p[i]);
+    }
+    printf("\n");
+}
+
+void InputNumber(int *ip, int num)
+{
+    int i;
+
+    for (i = COUNT - 1; i >= 0; i--) {
+        ip[i] = num % 10;
+        num /= 10;
+    }
+}
+
+int CheckHit(int *p, int *cp, int *ip)
+{
+    int i;
+    int hit = 0;
+
+    for (i = 0; i < COUNT; i++){
+        //printf("%d", p[i]);
+        if (p[i] == ip[i]) {
+            hit ++;
+            cp[i] = -1;
+            ip[i] = -2;
+        } else {
+            cp[i] = p[i];
+        }
+    }
+
+    return hit;
+}
+
+int CheckBlow(int *p, int *cp, int *ip)
+{
+    int i;
+    int j;
+    int blow = 0;
+
+    for (i = 0; i < COUNT; i++) {
+        for (j = 0; j < COUNT; j++) {
+            if (p[i] == ip[j]) {
+                blow ++;
+                ip[j] = -2;
+            }
+        }
+    }
+
+    return blow;
+}
