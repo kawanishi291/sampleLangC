@@ -44,13 +44,13 @@ void SetNumber(int *p)
     time(&tm);
     srand((unsigned int)tm);
     num = 0 + rand() % 9999;
-    printf("target = ");
+    // printf("target = ");
     for (i = 0; i < COUNT; i++){
         p[i] = num % 10;
         num /= 10;
-        printf("%d", p[i]);
+        // printf("%d", p[i]);
     }
-    printf("\n");
+    // printf("\n");
 }
 
 void InputNumber(int *ip)
