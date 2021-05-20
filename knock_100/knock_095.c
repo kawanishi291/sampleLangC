@@ -98,7 +98,7 @@ int CheckBlow(int *p, int *cp, int *ip)
 
     for (i = 0; i < COUNT; i++) {
         for (j = 0; j < COUNT; j++) {
-            if (p[i] == ip[j]) {
+            if (cp[i] == ip[j] && cp[i] != -1) {
                 blow ++;
                 ip[j] = -2;
             }
