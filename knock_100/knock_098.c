@@ -119,6 +119,8 @@ int LetsBINGO()
     return 0;
 }
 
+// いちいちランダム関数を呼ぶのではなく先に出玉配列を作るようにする
+/*
 int SelectNum()
 {
     time_t tm;
@@ -130,7 +132,7 @@ int SelectNum()
 
     return num;
 }
-
+*/
 
 int CheckBINGO()
 {
