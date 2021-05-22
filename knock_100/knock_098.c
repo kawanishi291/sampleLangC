@@ -13,21 +13,24 @@
 #define COLUMNS 5
 
 void SetBINGO();
+void SetOrder();
 void PrintCard();
 int LetsBINGO();
-int SelectNum();
 int CheckBINGO();
 int CompleteRows();
 int CompleteColumns();
 int CountBINGO();
 
 int bingo_card[ROWS][COLUMNS];
+int order_list[CARDS];
+int order_num = 0;
 
 int main(){
     int flag;
     int cnt;
 
     SetBINGO();
+    SetOrder();
     while(1){
         PrintCard();
         flag = LetsBINGO();
@@ -40,6 +43,7 @@ int main(){
         if (1 == flag) {
             break;
         }
+        order_num ++;
     }
 
     return 0;
@@ -85,6 +89,37 @@ void SetBINGO(){
 }
 
 
+void SetOrder()
+{
+    time_t tm;
+    int i;
+    int j;
+    int cnt;
+    int num;
+    int flag = 1;
+
+    time(&tm);
+    srand((unsigned int)tm);
+    for (i = 0; i < CARDS; i++) {
+        cnt = 0;
+        num = 1 + rand() % 75;
+        do {
+            if (num == order_list[cnt]) {
+                flag = 1;
+                break;
+            }
+            cnt ++;
+        } while (cnt < i);
+        if (flag == 1) {
+            i --;
+            flag = 0;
+        } else {
+            order_list[i] = num;
+        }
+    }
+}
+
+
 void PrintCard()
 {
     int i;
@@ -105,7 +140,7 @@ int LetsBINGO()
     int j;
     int num;
 
-    num = SelectNum();
+    num = order_list[order_num];
     printf("%d", num);
     for (i = 0; i < ROWS; i++) {
         for (j = 0; j < COLUMNS; j++) {
@@ -119,20 +154,6 @@ int LetsBINGO()
     return 0;
 }
 
-// いちいちランダム関数を呼ぶのではなく先に出玉配列を作るようにする
-/*
-int SelectNum()
-{
-    time_t tm;
-    int num;
-
-    time(&tm);
-    srand((unsigned int)tm);
-    num = 1 + rand() % 75;
-
-    return num;
-}
-*/
 
 int CheckBINGO()
 {
