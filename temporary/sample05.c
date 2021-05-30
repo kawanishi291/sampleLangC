@@ -26,6 +26,9 @@ int main(){
             scanf("%d", &t);
             printf("%d畳, %.2f㎡, 約%d坪\n", t * 2, t * 2 * 1.62, t);
             break;
+        default:
+            printf("無効コマンドです。\n");
+            break;
     }
 
 }
